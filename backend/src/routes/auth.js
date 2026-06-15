@@ -31,4 +31,25 @@ authRouter.post('/signup', async(req,res) => {
 
 })
 
+authRouter.post("/login", async (req, res) => {
+    try {
+        const { emailId, password } = req.body;
+
+        const user = await User.findOne({ emailId });
+
+        if (!user) {
+            return res.status(404).send("User not found");
+        }
+
+        if (user.password !== password) {
+            return res.status(400).send("Invalid Credentials");
+        }
+
+        res.send(user);
+
+    } catch (err) {
+        res.status(400).send(err.message);
+    }
+});
+
 module.exports = authRouter;
