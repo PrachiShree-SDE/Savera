@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const  validator = require('validator');
+const jwt = require('jsonwebtoken');
 
 const userSchema = new mongoose.Schema({
     firstName:{
@@ -41,8 +42,13 @@ const userSchema = new mongoose.Schema({
 },
 {
     timestamps:true,
-}
+})
 
-)
+
+userSchema.methods.getJWT = function (){
+    const user = this;
+    const token = jwt.sign({_id:user._id},'Savara_secretKey',{expiresIn:'7d'});
+    return token;
+}
 
 module.exports = mongoose.model("User",userSchema);
