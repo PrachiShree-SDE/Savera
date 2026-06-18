@@ -41,4 +41,16 @@ console.log("ADMIN:", isAdmin);
     }
 })
 
+productRouter.get('/product/view',authUser,async(req, res) => {
+    try{
+        const logedinUser = req.user;
+    const product = await Product.find().select("title price description imageUrl brand category")
+    res.status(200).json({message:"Product fetched successfully", data:product});
+    }catch(err){
+        res.status(400).json({message:err.message});
+    }
+})
+
+
+
 module.exports = productRouter;

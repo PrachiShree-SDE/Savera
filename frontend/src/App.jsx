@@ -6,6 +6,7 @@ import Home from "./components/Home";
 import Login from "./components/Login";
 import {Provider} from "react-redux"
 import appStore from "./utils/appStore";
+import Products from "./components/Products";
 
 function App() {
   return (
@@ -13,7 +14,9 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />}>
-            <Route path="/login" element={<Login />} />
+          <Route index element={<Products/>} />
+          <Route path="/login" element={<Login />} />
+            
           </Route>
         </Routes>
       </BrowserRouter>
