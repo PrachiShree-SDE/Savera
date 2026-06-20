@@ -17,11 +17,14 @@ const authRouter = require('./src/routes/auth');
 const profileRouter = require('./src/routes/profile');
 const adminRouter = require('./src/routes/admin');
 const productRouter = require('./src/routes/product');
+const cartRouter = require('./src/routes/cart');
 
 app.use('/',authRouter);
 app.use('/',profileRouter);
 app.use('/',adminRouter);
 app.use('/',productRouter);
+app.use('/',cartRouter);
+
 
 connectDB()
     .then(() => {
