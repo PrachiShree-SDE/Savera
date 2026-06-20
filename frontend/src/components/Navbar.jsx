@@ -27,18 +27,21 @@ const Navbar = () => {
         <div className="container-fluid">
           <div className="flex gap-3 justify-center items-center">
             <img className="h-20 w-40" src={logo} alt="logo" />
-            <Link className="nav-link" to="/">
+            <Link className="nav-link font-semibold hover:underline" to="/">
               Home
             </Link>
-            <a className="nav-link" href="#">
-              Features
-            </a>
-            <a className="nav-link" href="#">
-              Pricing
-            </a>
           </div>
 
            { user && <div className="dropdown mx-5">
+
+
+              <Link
+                className=" btn btn-secondary mx-2"
+                to={"/"}
+              >
+              🛒
+              </Link>
+
               <Link
                 className="btn btn-secondary dropdown-toggle"
                 href="#"
@@ -46,19 +49,19 @@ const Navbar = () => {
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
-                Welcome
+               {user.firstName}
               </Link>
 
               <ul className="dropdown-menu">
                 <li>
-                  <a className="dropdown-item" href="#">
-                    Action
-                  </a>
+                <Link className="dropdown-item" to={"/profile"}>
+                    My Profile
+                  </Link>
                 </li>
                 <li>
-                  <a className="dropdown-item" href="#">
-                    Another action
-                  </a>
+                  <Link className="dropdown-item" href="#">
+                    Order Detail
+                  </Link>
                 </li>
                 <li>
                   <a className="dropdown-item" onClick={handleLogout}>

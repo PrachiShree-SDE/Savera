@@ -4,8 +4,6 @@ const Product = require('../models/product');
 const { isAdmin, authUser } = require('../middleware/auth');
 
 productRouter.post('/product/create',authUser,isAdmin,async(req, res) => {
-    console.log("AUTH:", authUser);
-console.log("ADMIN:", isAdmin);
     try{
          const {title,price, description,imageUrl,brand,category,stock} = req.body;
      const existingProduct = await Product.findOne({
@@ -51,6 +49,22 @@ productRouter.get('/product/view',authUser,async(req, res) => {
     }
 })
 
+productRouter.get('/product/:id',authUser, async(req,res) => {
 
+   try{
+     const {id} = req.params;
+
+    const product = await Product.findById(id).select("title price description imageUrl brand category");
+
+    if(!product){
+        res.status(400).json({message:"Product do not exist"})
+    }
+
+    res.send(product);
+   }catch(err){
+    res.status(400).json({message:err.message});
+   }
+
+})
 
 module.exports = productRouter;

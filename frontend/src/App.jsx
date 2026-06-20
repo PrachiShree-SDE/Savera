@@ -7,6 +7,7 @@ import Login from "./components/Login";
 import {Provider} from "react-redux"
 import appStore from "./utils/appStore";
 import Products from "./components/Products";
+import ProductView from "./components/ProductView";
 
 function App() {
   return (
@@ -16,7 +17,7 @@ function App() {
           <Route path="/" element={<Home />}>
           <Route index element={<Products/>} />
           <Route path="/login" element={<Login />} />
-            
+          <Route path="/product/:id" element={<ProductView/>} />
           </Route>
         </Routes>
       </BrowserRouter>
